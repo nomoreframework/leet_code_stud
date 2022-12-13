@@ -1,0 +1,6 @@
+#ignore
+**/.vscode
+**/bin
+**/obj
+*.csproj
+*.json
