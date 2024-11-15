@@ -1,19 +1,37 @@
-﻿
-    var get_max_area_points = (int [] arr) => {
-        switch(arr.Length){
-            case 0 : throw new NullReferenceException($"excepted non empty array");
-            case 1 : return arr[0];
-            case 2 : return arr[0] > arr[1] ? arr[1] : arr[0];
+﻿public class Solution
+{
+    public bool IsPalindrome(int x)
+    {
+        bool result = false;
+        if (x < 0)
+            return result;
+        int i;
+        i = 0;
+        int[] numbers = getNumbers(x, out int j);
+        while (i <= j)
+        {
+            result = numbers[i] == numbers[j - 1];
+            if (!result)
+                return result;
+            i++; j--;
         }
-        int max_area = 0;
-        int left_point = 0;
-        int right_point = arr.Length - 1;
-        while(left_point < right_point){
-            int shorter = Math.Min(arr[left_point], arr[right_point]);
-            max_area = Math.Max(max_area, shorter * (right_point - left_point));
-            if(arr[left_point] < arr[right_point]) left_point++;
-            else right_point--;
-        }        
-        return max_area;
-    };    
-
+        return result;
+    }
+    public int[] getNumbers(int num, out int digits)
+    {
+        int[] res = new int[12];
+        int ten = 1;
+        int i = 0;
+        digits = 0;
+        do
+        {
+            res[i] = num % 10;
+            ten *= 10;
+            digits++;
+            num /= 10;
+            i++;
+        }
+        while (num > 0);
+        return res;
+    }
+}
